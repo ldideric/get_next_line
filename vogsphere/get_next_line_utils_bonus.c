@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 13:16:32 by ldideric       #+#    #+#                */
-/*   Updated: 2020/01/09 14:59:57 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/01/27 12:29:01 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,19 @@ char		*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	b = 0;
-	str = malloc((ft_strlen(s1, FALSE) + ft_strlen(s2, FALSE) + 2));
-	while (s1[i] != '\0' && s1[i] != '\n')
+	str = ft_calloc((ft_strlen(s1, FALSE) + ft_strlen(s2, FALSE) + 2));
+	while (str && (s1[i] != '\0' && s1[i] != '\n'))
 	{
 		str[i] = s1[i];
 		i++;
 	}
-	while (s2[b] != '\0')
+	while (str && (s2[b] != '\0'))
 	{
-		str[i] = s2[b];
-		i++;
+		str[i + b] = s2[b];
 		b++;
-		if (str[i - 1] == '\n')
+		if (str[(i + b) - 1] == '\n')
 			break ;
 	}
-	str[i] = '\0';
-	str[i + 1] = '\0';
 	free(s1);
 	return (str);
 }
@@ -65,15 +62,14 @@ char		*ft_strdup(char *s1, int a)
 		len = ft_strlen(s1, FALSE);
 	else
 		len = BUFFER_SIZE;
-	str = malloc(sizeof(char) * len + 1);
+	str = ft_calloc(sizeof(char) * len + 2);
 	if (!str)
 		return (NULL);
-	while (i < len)
+	while (s1[i] != '\0')
 	{
 		str[i] = s1[i];
 		i++;
 	}
-	str[len] = '\0';
 	return (str);
 }
 
@@ -90,4 +86,21 @@ char		*clr_to_nl(char *buffer)
 	new = ft_strdup(buffer + i, FALSE);
 	free(buffer);
 	return (new);
+}
+
+void		*ft_calloc(size_t count)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = malloc(count);
+	if (!str)
+		return (NULL);
+	while ((unsigned long)i < (count))
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (&str[0]);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line_bonus.c                              :+:    :+:            */
+/*   get_next_line.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 12:59:04 by ldideric       #+#    #+#                */
-/*   Updated: 2020/01/27 12:48:14 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/01/27 12:45:07 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static int	checks(int fd, char *buffer)
 {
